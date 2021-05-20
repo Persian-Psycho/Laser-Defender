@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject PlayerProjectile;
 
+    [Header(header:"Player GamePlay")]
+    [SerializeField] float Health = 200;
+    [Space]
+    [SerializeField] AudioClip ExplosionSFX;
+    [SerializeField] float PlayerExplosionVolume=0.75f;
     #endregion
 
     #region Private Members
@@ -68,8 +73,29 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Private Defined Methods
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        var d = other.GetComponent<DamageDealer>();
+        if (!d) return;
+
+        Health -= d.GetDamage();
+
+        if (Health <= 0) Die();
+    }
+
+    #endregion
+
     #region Private Helpers Methods
-    
+    private void Die()
+    {
+        Destroy(gameObject);
+
+        //Play the explosion song
+        AudioSource.PlayClipAtPoint(ExplosionSFX, Camera.main.transform.position, PlayerExplosionVolume);
+    }
+
     /// <summary>
     /// Start Firing
     /// </summary>
@@ -111,9 +137,10 @@ public class Player : MonoBehaviour
         var newXPos = horizontalMovement * Time.deltaTime * PlayerSpeed;
         var newYPos = verticalMovement * Time.deltaTime * PlayerSpeed;
 
-        transform.position = new Vector2(
+        transform.position = new Vector3(
             Mathf.Clamp(transform.position.x + newXPos, mMinX, mMaxX),
-            Mathf.Clamp(transform.position.y + newYPos, mMinY, mMaxY));
+            Mathf.Clamp(transform.position.y + newYPos, mMinY, mMaxY),transform.position.z);
     }
+
     #endregion
 }
