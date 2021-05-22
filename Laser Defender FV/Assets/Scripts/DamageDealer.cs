@@ -23,5 +23,9 @@ public class DamageDealer : MonoBehaviour
     /// <returns></returns>
     public float GetDamage() => Damage;
 
+    /// <summary>
+    /// Destroy the object after hit
+    /// </summary>
+    public void Hit() => Destroy(gameObject);
     #endregion
 }

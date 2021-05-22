@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
     #region Parameters Configuration
 
 
-
+    [SerializeField] float Score = 100;
     [SerializeField] float Health=100;
 
     [Header(header:"Explosion")]
@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour
 
         Health -= d.GetDamage();
 
+        d.Hit();
+
         if (Health <= 0) Die();
     }
 
@@ -65,10 +67,14 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        
+
+        FindObjectOfType<GameSession>().AddScore(Score);
+
         //Create the explosion effect and then destroy it.
         var ef=Instantiate(ExplosionVFX, transform.position, Quaternion.identity);
         Destroy(ef,DurationOfExplosion);
+
+
 
         //Play the explosion sound
         AudioSource.PlayClipAtPoint(ExplosionSFX, Camera.main.transform.position,EnemyExplosionVolume);

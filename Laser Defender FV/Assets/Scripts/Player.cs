@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
         if (!d) return;
 
         Health -= d.GetDamage();
+        d.Hit();
 
         if (Health <= 0) Die();
     }
@@ -94,6 +95,8 @@ public class Player : MonoBehaviour
 
         //Play the explosion song
         AudioSource.PlayClipAtPoint(ExplosionSFX, Camera.main.transform.position, PlayerExplosionVolume);
+
+        FindObjectOfType<Level>().LoadGameOver();
     }
 
     /// <summary>
@@ -142,5 +145,9 @@ public class Player : MonoBehaviour
             Mathf.Clamp(transform.position.y + newYPos, mMinY, mMaxY),transform.position.z);
     }
 
+    #endregion
+
+    #region Public Helpers
+    public float GetHealth() => Health;
     #endregion
 }
