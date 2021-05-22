@@ -46,5 +46,8 @@ MonoBehaviour:
   WaveConfigs:
   - {fileID: 11400000, guid: 762ca512e80478b48a72c923b0cebb6c, type: 2}
   - {fileID: 11400000, guid: d1949ae055dacdf4fa477b9ea2568131, type: 2}
-  - {fileID: 11400000, guid: d45c68ae3c2da0e4791c0786e34b0475, type: 2}
+  - {fileID: 11400000, guid: 4f34a56c979302640aa3e29b8d9a10ae, type: 2}
+  - {fileID: 11400000, guid: 826e73a903a8f7444b3fdbe8f60ccf34, type: 2}
+  - {fileID: 11400000, guid: 059dd9732f685c24fb34a4c27ca2304c, type: 2}
+  - {fileID: 11400000, guid: 7f2ff013f14f9f64fb63bb763ead888d, type: 2}
   Looping: 1

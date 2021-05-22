@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2364e9e37ab734292c8e15cbd2b2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Score: 100
+  Health: 200
   ExplosionVFX: {fileID: 1018592215918842977, guid: df61b5de4dbe9a64f92540075bba3d20, type: 3}
   DurationOfExplosion: 0.75
   ExplosionSFX: {fileID: 8300000, guid: 92d83f74778f81b4a95788e9c7ccaf9d, type: 3}
@@ -206,4 +207,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5beda1bb9627c5149975fd40b7f844e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 200
+  Damage: 100
