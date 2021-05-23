@@ -36,9 +36,14 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] AudioClip ExplosionSFX;
     [SerializeField] float PlayerExplosionVolume=0.75f;
+
+    [Header(header:"Shield Power")]
+    [SerializeField] GameObject ShieldPrefab;
+    [SerializeField] float DurationOfShield=3f;
     #endregion
 
     #region Private Members
+
 
     /// <summary>
     /// The main game camera
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour
 
     private Coroutine mFiringCoroutine;
 
+    private GameObject mShield;
     #endregion
 
     #region Default Unity Methods
@@ -61,6 +67,7 @@ public class Player : MonoBehaviour
     {
         mGameCamera = Camera.main;
         SetUpMovementBoundries();
+        PlayerProjectile.GetComponent<DamageDealer>().InitialDamage= PlayerProjectile.GetComponent<DamageDealer>().GetDamage();
     }
 
     // Update is called once per frame
@@ -68,7 +75,7 @@ public class Player : MonoBehaviour
     {
         PlayerMovement();
         Fire();
-
+        SetUpShieldPosition();
     }
 
     #endregion
@@ -78,7 +85,12 @@ public class Player : MonoBehaviour
     {
 
         var d = other.GetComponent<DamageDealer>();
-        if (!d) return;
+        HitProcess(d);
+    }
+
+    private void HitProcess(DamageDealer d)
+    {
+        if (!d || Shield) return;
 
         Health -= d.GetDamage();
         d.Hit();
@@ -95,6 +107,8 @@ public class Player : MonoBehaviour
 
         //Play the explosion song
         AudioSource.PlayClipAtPoint(ExplosionSFX, Camera.main.transform.position, PlayerExplosionVolume);
+
+        PlayerProjectile.GetComponent<DamageDealer>().ResetDamge();
 
         FindObjectOfType<Level>().LoadGameOver();
     }
@@ -145,9 +159,30 @@ public class Player : MonoBehaviour
             Mathf.Clamp(transform.position.y + newYPos, mMinY, mMaxY),transform.position.z);
     }
 
+
+    private void SetUpShieldPosition()
+    {
+        if (Shield)StartCoroutine(MoveShieldWithPlayer());
+    }
+    private IEnumerator MoveShieldWithPlayer()
+    {
+        if (mShield != null) Destroy(mShield);
+
+        mShield = Instantiate(ShieldPrefab, transform.position, Quaternion.identity);
+            mShield.transform.position = transform.position;
+        yield return new WaitForSeconds(DurationOfShield);
+        Shield = false;
+        Destroy(mShield);
+
+    }
     #endregion
 
     #region Public Helpers
+    public float AddHealth(float health) => Health += health;
     public float GetHealth() => Health;
+    public bool Shield { set; private get; } = false;
+    
+    public void IncreaseProjectileDamage(float incrementFactor)=>
+        PlayerProjectile.GetComponent<DamageDealer>().AddDamage(incrementFactor);
     #endregion
 }

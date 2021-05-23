@@ -10,7 +10,6 @@ public class WaveConfig : ScriptableObject
     /// The Path that contains multiple waypoints
     /// </summary>
     [SerializeField] GameObject PathPrefab;
-
  
 
     /// <summary>
@@ -39,6 +38,9 @@ public class WaveConfig : ScriptableObject
     [SerializeField] float EnemySpeed=0.9f;
 
     [SerializeField] bool isBoss=false;
+
+   
+
     #endregion
 
     #region Public Properties
@@ -87,6 +89,8 @@ public class WaveConfig : ScriptableObject
 
         return waypoints;
     } 
+
+
 
     #endregion
 }

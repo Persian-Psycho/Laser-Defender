@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 608779118276483072}
   - component: {fileID: 608779118276483074}
   - component: {fileID: 1256648598}
+  - component: {fileID: 1222407923}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -104,6 +105,8 @@ MonoBehaviour:
   Health: 500
   ExplosionSFX: {fileID: 8300000, guid: 306491435fc996546b6b1af4aadfe46d, type: 3}
   PlayerExplosionVolume: 1
+  ShieldPrefab: {fileID: 2663794385452245380, guid: a2090fd2ee7242d4a8f6742d2df5dcbd, type: 3}
+  DurationOfShield: 5
 --- !u!60 &1256648598
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -156,3 +159,24 @@ PolygonCollider2D:
       - {x: 0.41663063, y: -0.21275082}
       - {x: 0.44468313, y: -0.2546786}
       - {x: 0.46748838, y: -0.2515595}
+--- !u!50 &1222407923
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608779118276483073}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

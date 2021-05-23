@@ -48,3 +48,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 059dd9732f685c24fb34a4c27ca2304c, type: 2}
   - {fileID: 11400000, guid: 7f2ff013f14f9f64fb63bb763ead888d, type: 2}
   - {fileID: 11400000, guid: 706e2bc8588d7134383540815336f31c, type: 2}
+  NumOfNonBossPowers: 1
+  NumOfBossPowers: 2
+  HighDamageProbability: 15
+  ShieldProbability: 5
+  HealthProbability: 40

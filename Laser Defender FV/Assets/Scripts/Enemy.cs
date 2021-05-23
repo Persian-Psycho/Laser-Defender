@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     #region Privte Members
 
+    private int PowerDropRandomFactor=20;
     private float mShotCounter;
 
     #endregion
@@ -50,7 +51,16 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         var d = other.GetComponent<DamageDealer>();
+        HitProcess(d);
+       
+    }
 
+    #endregion
+
+    #region Private Methods
+
+    private void HitProcess(DamageDealer d)
+    {
         if (!d) return;
 
         Health -= d.GetDamage();
@@ -60,16 +70,16 @@ public class Enemy : MonoBehaviour
         if (Health <= 0) Die();
     }
 
-    #endregion
-
-    #region Private Methods
-
     private void Die()
     {
         Destroy(gameObject);
 
         FindObjectOfType<GameSession>().AddScore(Score);
-
+        if (Random.Range(0, 100) < PowerDropRandomFactor)
+        {
+          var power=FindObjectOfType<PowerUpGenerator>().SelectTheRightPower();
+            if(power!=null)Instantiate(power, transform.position, Quaternion.identity);
+        }
         //Create the explosion effect and then destroy it.
         var ef=Instantiate(ExplosionVFX, transform.position, Quaternion.identity);
         Destroy(ef,DurationOfExplosion);

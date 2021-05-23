@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach(var WCs in WaveConfigLevels)
         {
-            
+            FindObjectOfType<PowerUpGenerator>().CurrentWaveConfigLevel = WCs;
             for (int waveIndex = mStartingWave; waveIndex < WCs.GetWaveConfigs().Count; waveIndex++)
             {
                 var currentWave = WCs.GetWaveConfigs()[waveIndex];
@@ -85,8 +85,8 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(wave.GetTimeBetweenSpawns());
             else
             {
+                yield return new WaitForSeconds(WaitDurationForBoss[mStartingLevel]);
                 mStartingLevel++;
-                yield return new WaitForSeconds(WaitDurationForBoss[mStartingLevel - 1]);
             }
         }
     }
