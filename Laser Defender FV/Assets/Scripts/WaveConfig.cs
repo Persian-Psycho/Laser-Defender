@@ -11,6 +11,8 @@ public class WaveConfig : ScriptableObject
     /// </summary>
     [SerializeField] GameObject PathPrefab;
 
+ 
+
     /// <summary>
     /// The sprite of the Enemy
     /// </summary>
@@ -36,6 +38,7 @@ public class WaveConfig : ScriptableObject
     /// </summary>
     [SerializeField] float EnemySpeed=0.9f;
 
+    [SerializeField] bool isBoss=false;
     #endregion
 
     #region Public Properties
@@ -63,6 +66,8 @@ public class WaveConfig : ScriptableObject
     /// </summary>
     /// <returns></returns>
     public int GetNumberOfEnemy() => NumberOfEnemy;
+
+    public bool IsBoss() => isBoss;
 
     /// <summary>
     /// The speed of each enemy.

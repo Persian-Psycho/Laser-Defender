@@ -11,12 +11,15 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// The list of waveconfigs that needs to be managed
     /// </summary>
-    [SerializeField] List<WaveConfig> WaveConfigs;
+    [SerializeField] List<WaveConfigLevels> WaveConfigLevels;
 
     /// <summary>
     /// Should I repeat the list of waveconfig when it is finished?
     /// </summary>
     [SerializeField] bool Looping = false;
+
+
+    [SerializeField] List<float> WaitDurationForBoss;
     #endregion
 
     #region Private Members
@@ -26,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     private int mStartingWave = 0;
 
+    private int mStartingLevel = 0;
     #endregion
 
     #region Unity Default Funcs
@@ -35,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
     {
         do
         {
+            mStartingLevel = 0;
             yield return StartCoroutine(SpawnAllEnemies());
         } while (Looping);
     }
@@ -49,11 +54,17 @@ public class EnemySpawner : MonoBehaviour
     /// <returns></returns>
     private IEnumerator SpawnAllEnemies()
     {
-        for (int waveIndex = mStartingWave; waveIndex < WaveConfigs.Count; waveIndex++)
+        foreach(var WCs in WaveConfigLevels)
         {
-            var currentWave = WaveConfigs[waveIndex];
-            yield return StartCoroutine(SpawnEnemy(currentWave));
+            
+            for (int waveIndex = mStartingWave; waveIndex < WCs.GetWaveConfigs().Count; waveIndex++)
+            {
+                var currentWave = WCs.GetWaveConfigs()[waveIndex];
+                yield return StartCoroutine(SpawnEnemy(currentWave));
+            }
         }
+
+
     }
 
     /// <summary>
@@ -70,10 +81,16 @@ public class EnemySpawner : MonoBehaviour
            wave.GetEnemyWaypoints()[0].transform.position,
            Quaternion.identity);
             newEnemy.GetComponent<EnemyPathing>().waveConfig = wave;
-
-            yield return new WaitForSeconds(wave.GetTimeBetweenSpawns());
+            if (!wave.IsBoss())
+                yield return new WaitForSeconds(wave.GetTimeBetweenSpawns());
+            else
+            {
+                mStartingLevel++;
+                yield return new WaitForSeconds(WaitDurationForBoss[mStartingLevel - 1]);
+            }
         }
     }
+
 
     #endregion
 }
