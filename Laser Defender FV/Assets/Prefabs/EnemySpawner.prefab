@@ -46,7 +46,11 @@ MonoBehaviour:
   WaveConfigLevels:
   - {fileID: 232462037197151761, guid: a851ea18170f7e04ba7fc48db2a336d3, type: 3}
   - {fileID: 5230942862115714505, guid: 3939b07a360f3f84893fb5ddb785760e, type: 3}
+  - {fileID: 5230942862115714505, guid: 2d24b7ed65f3b704ca2a574e5016d37a, type: 3}
+  - {fileID: 5230942862115714505, guid: 5ff4d76dc4728aa4a967d56971cca20b, type: 3}
   Looping: 1
   WaitDurationForBoss:
   - 4
   - 5
+  - 6
+  - 7

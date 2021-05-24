@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879260737f362c44ab50ab99385c615a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageIncrementFactor: 100
+  DamageIncrementFactor: 50
+  HighDamageAudio: {fileID: 8300000, guid: 4b321969367a91e4993658e4eed1022a, type: 3}
+  HighDamageAudioVolume: 0.75

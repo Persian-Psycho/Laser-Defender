@@ -11,7 +11,6 @@ public class WaveConfig : ScriptableObject
     /// </summary>
     [SerializeField] GameObject PathPrefab;
  
-
     /// <summary>
     /// The sprite of the Enemy
     /// </summary>

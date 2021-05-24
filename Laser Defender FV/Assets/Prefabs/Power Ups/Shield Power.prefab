@@ -118,6 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dba4afcf75f859478fff09cc2d77439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShieldPrefab: {fileID: 2663794385452245380, guid: a2090fd2ee7242d4a8f6742d2df5dcbd, type: 3}
+  DurationOfShield: 5
+  ShieldAudio: {fileID: 8300000, guid: 98132b16102040541970be577cc32cbc, type: 3}
+  ShieldAudioVolume: 0.75
 --- !u!61 &8967898866409365374
 BoxCollider2D:
   m_ObjectHideFlags: 0

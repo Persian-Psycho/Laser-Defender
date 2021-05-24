@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
+  HealthAudio: {fileID: 8300000, guid: 3bf48e83afac7394680b7a6a547b8faa, type: 3}
+  HealthdAudioVolume: 0.75
 --- !u!50 &1716468520
 Rigidbody2D:
   serializedVersion: 4

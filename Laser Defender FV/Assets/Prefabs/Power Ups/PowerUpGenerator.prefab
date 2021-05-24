@@ -46,3 +46,6 @@ MonoBehaviour:
   ShieldPowerUp: {fileID: 8967898866409365373, guid: fb2364922ccb32944bae6447209070bb, type: 3}
   HealthPowerUp: {fileID: 2427054638191774742, guid: b169bad937ecdde41a747a60525cea80, type: 3}
   HighDamagePowerUp: {fileID: 1223963600240107516, guid: ea1ff2aca067d5a4ea081c6f7057a20a, type: 3}
+  HighDamageProbability: 12
+  HealthProbability: 28
+  ShieldProbability: 56

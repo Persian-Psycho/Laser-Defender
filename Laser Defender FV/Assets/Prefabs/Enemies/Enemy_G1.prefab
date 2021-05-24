@@ -61,6 +61,8 @@ MonoBehaviour:
   MaxShotTime: 2
   EnemyProjectileSFX: {fileID: 8300000, guid: c4626f57b4ebd2142a62622499a20d8b, type: 3}
   EnemyProjectileVolume: 0.5
+  PowerDropProbability: 15
+  MaxNumOfPowerDrops: 1
 --- !u!212 &3905328991569492629
 SpriteRenderer:
   m_ObjectHideFlags: 0

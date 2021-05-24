@@ -1,11 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     #region Parameters Configuration
-
+    [Header(header:"Player GamePlay")]
+    [SerializeField] float Health = 200;
+    [Space]
     /// <summary>
     /// The speed of the player
     /// </summary>
@@ -14,7 +15,8 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The movement padding
     /// </summary>
-    [SerializeField] float MovementPadding=0.5f;
+    [SerializeField] float MovementPadding = 0.5f;
+    [Space]
 
     /// <summary>
     /// The speed of player projectile(Laser)
@@ -31,15 +33,12 @@ public class Player : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject PlayerProjectile;
 
-    [Header(header:"Player GamePlay")]
-    [SerializeField] float Health = 200;
-    [Space]
+
+    [Header(header:"Explosions")]
     [SerializeField] AudioClip ExplosionSFX;
     [SerializeField] float PlayerExplosionVolume=0.75f;
 
-    [Header(header:"Shield Power")]
-    [SerializeField] GameObject ShieldPrefab;
-    [SerializeField] float DurationOfShield=3f;
+
     #endregion
 
     #region Private Members
@@ -55,7 +54,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private float mMaxX, mMaxY, mMinX, mMinY;
 
+    /// <summary>
+    /// The coroutine which player firing run on it.
+    /// </summary>
     private Coroutine mFiringCoroutine;
+
 
     private GameObject mShield;
     #endregion
@@ -81,6 +84,11 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Private Defined Methods
+
+    /// <summary>
+    /// Calls when the collision occurs
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -88,6 +96,14 @@ public class Player : MonoBehaviour
         HitProcess(d);
     }
 
+    #endregion
+
+    #region Private Helpers Methods
+
+    /// <summary>
+    /// Calls to make a decision about the hit
+    /// </summary>
+    /// <param name="d"></param>
     private void HitProcess(DamageDealer d)
     {
         if (!d || Shield) return;
@@ -98,9 +114,6 @@ public class Player : MonoBehaviour
         if (Health <= 0) Die();
     }
 
-    #endregion
-
-    #region Private Helpers Methods
     private void Die()
     {
         Destroy(gameObject);
@@ -177,12 +190,45 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region Public Helpers
-    public float AddHealth(float health) => Health += health;
+    #region Public Methods
+
+    /// <summary>
+    /// Increase the player health
+    /// </summary>
+    /// <param name="health"></param>
+    /// <returns></returns>
+    public void AddHealth(float health) => Health += health;
+
+    /// <summary>
+    /// The current health of the player
+    /// </summary>
+    /// <returns></returns>
     public float GetHealth() => Health;
-    public bool Shield { set; private get; } = false;
+
+
     
+    /// <summary>
+    /// Icnrease the damage of the projectile
+    /// </summary>
+    /// <param name="incrementFactor"></param>
     public void IncreaseProjectileDamage(float incrementFactor)=>
         PlayerProjectile.GetComponent<DamageDealer>().AddDamage(incrementFactor);
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Is the player protecting by the shield
+    /// </summary>
+    public bool Shield { set; private get; } = false;
+
+    /// <summary>
+    /// The prefab for the shield
+    /// </summary>
+    public GameObject ShieldPrefab { set; private get; }
+
+    /// <summary>
+    /// The duration of shiled
+    /// </summary>
+    public float DurationOfShield { set; private get; }
     #endregion
 }

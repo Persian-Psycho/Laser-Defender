@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Spin an object over Z  axis
+/// </summary>
 public class Spinner : MonoBehaviour
 {
     [SerializeField] float SpeedOfSpinner = 180f;

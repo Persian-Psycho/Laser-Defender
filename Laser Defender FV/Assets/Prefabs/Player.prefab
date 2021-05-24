@@ -97,16 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe797957c7bfd24f9f90d5adcf0c335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 500
   PlayerSpeed: 7
   MovementPadding: 0.5
   ProjectileSpeed: 16
   DurationOfProjectileSpawn: 0.1
   PlayerProjectile: {fileID: 8433442161971185588, guid: 8b2da82815a6a0f4cbcb4aec5b8c6987, type: 3}
-  Health: 500
   ExplosionSFX: {fileID: 8300000, guid: 306491435fc996546b6b1af4aadfe46d, type: 3}
   PlayerExplosionVolume: 1
-  ShieldPrefab: {fileID: 2663794385452245380, guid: a2090fd2ee7242d4a8f6742d2df5dcbd, type: 3}
-  DurationOfShield: 5
 --- !u!60 &1256648598
 PolygonCollider2D:
   m_ObjectHideFlags: 0

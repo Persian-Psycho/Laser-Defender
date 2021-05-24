@@ -17,6 +17,9 @@ public class DamageDealer : MonoBehaviour
 
     #region Private Members
 
+    /// <summary>
+    /// What is the inital damage
+    /// </summary>
     public float InitialDamage { set; get; }
 
     #endregion
@@ -35,8 +38,15 @@ public class DamageDealer : MonoBehaviour
     /// </summary>
     public void Hit() => Destroy(gameObject);
 
+    /// <summary>
+    /// Increase the damage
+    /// </summary>
+    /// <param name="increment">How much the projectile damage must be increased</param>
     public void AddDamage(float increment) => Damage += increment;
 
+    /// <summary>
+    /// Reset the damage to the initial value
+    /// </summary>
     public void ResetDamge() => Damage = InitialDamage;
     #endregion
 }

@@ -1,15 +1,24 @@
 ﻿using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Display the score
+/// </summary>
 public class ScoreToDisplay : MonoBehaviour
 {
     #region Private Members
 
   
+    /// <summary>
+    /// The running game session
+    /// </summary>
     private GameSession mGameSession;
 
 
     #endregion
+
+    #region Unity Defined Methods
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,4 +31,5 @@ public class ScoreToDisplay : MonoBehaviour
     {
         GetComponent<TextMeshProUGUI>().text = mGameSession.Score.ToString();
     }
+    #endregion
 }
